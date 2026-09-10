@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORGE by h8</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #080808;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #2b2b2b;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+            letter-spacing: 5px;
+        }
+
+        header p {
+            color: #999;
+            margin-top: 8px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        button {
+            background: #151515;
+            color: white;
+            border: 1px solid #444;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #222;
+        }
+
+        button.active {
+            background: #8b0000;
+            border-color: #b00000;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        h2 {
+            border-left: 4px solid #b00000;
+            padding-left: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #111;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #292929;
+            text-align: center;
+        }
+
+        th {
+            background: #191919;
+            color: #aaa;
+        }
+
+        td:nth-child(2) {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .playoff {
+            display: flex;
+            gap: 50px;
+            overflow-x: auto;
+            padding: 30px 10px;
+        }
+
+        .round {
+            min-width: 220px;
+        }
+
+        .round h3 {
+            text-align: center;
+            color: #aaa;
+        }
+
+        .match {
+            background: #111;
+            border: 1px solid #333;
+            margin: 30px 0;
+        }
+
+        .team {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+        }
+
+        .team:last-child {
+            border-bottom: none;
+        }
+
+        .score {
+            float: right;
+            color: #aaa;
+        }
+
+        .final {
+            border-color: #8b0000;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>FORGE BY H8</h1>
+    <p>COUNTER-STRIKE 2 TOURNAMENT</p>
+</header>
+
+<nav>
+    <button class="active" onclick="showPage('groups', this)">
+        GROUP STAGE
+    </button>
+
+    <button onclick="showPage('playoff', this)">
+        PLAYOFF
+    </button>
+</nav>
+
+<main>
+
+    <!-- GROUP STAGE -->
+    <section id="groups" class="page active">
+
+        <h2>GROUP STAGE</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>TEAM</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>PTS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Team 1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Team 2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Team 3</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Team 4</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td>Team 5</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td>Team 6</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td>Team 7</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td>Team 8</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+    <!-- PLAYOFF -->
+    <section id="playoff" class="page">
+
+        <h2>PLAYOFF</h2>
+
+        <div class="playoff">
+
+            <div class="round">
+                <h3>QUARTERFINALS</h3>
+
+                <div class="match">
+                    <div class="team">
+                        Team 1
+                        <span class="score">0</span>
+                    </div>
+
+                    <div class="team">
+                        Team 8
+                        <span class="score">0</span>
+                    </div>
+                </div>
+
+                <div class="match">
+                    <div class="team">
+                        Team 4
+                        <span class="score">0</span>
+                    </div>
+
+                    <div class="team">
+                        Team 5
+                        <span class="score">0</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="round">
+                <h3>SEMIFINALS</h3>
+
+                <div class="match">
+                    <div class="team">
+                        TBD
+                    </div>
+
+                    <div class="team">
+                        TBD
+                    </div>
+                </div>
+
+                <div class="match">
+                    <div class="team">
+                        TBD
+                    </div>
+
+                    <div class="team">
+                        TBD
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="round">
+                <h3>FINAL</h3>
+
+                <div class="match final">
+                    <div class="team">
+                        TBD
+                    </div>
+
+                    <div class="team">
+                        TBD
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+function showPage(pageId, button) {
+
+    document.querySelectorAll('.page').forEach(function(page) {
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageId).classList.add('active');
+
+    document.querySelectorAll('nav button').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+}
+
+</script>
+
+</body>
+</html>
