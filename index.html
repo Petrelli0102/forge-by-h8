@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORGE by h8</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>FORGE by h8</title>
 
-       body {
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
     margin: 0;
     color: white;
     font-family: Arial, sans-serif;
 
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.70)),
         url("forge-bg.png");
 
     background-size: cover;
@@ -27,341 +29,1217 @@
     min-height: 100vh;
 }
 
-        header {
-            padding: 30px;
-            text-align: center;
-            border-bottom: 1px solid #2b2b2b;
-        }
 
-        header h1 {
-            margin: 0;
-            font-size: 42px;
-            letter-spacing: 5px;
-        }
+/* HEADER */
 
-        header p {
-            color: #999;
-            margin-top: 8px;
-        }
+header {
+    text-align: center;
+    padding: 35px 20px 20px;
+}
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 44px;
+    letter-spacing: 6px;
+}
 
-        button {
-            background: #151515;
-            color: white;
-            border: 1px solid #444;
-            padding: 12px 25px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+header p {
+    color: #aaa;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
 
-        button:hover {
-            background: #222;
-        }
 
-        button.active {
-            background: #8b0000;
-            border-color: #b00000;
-        }
+/* NAVIGATION */
 
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 30px;
-        }
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 30px;
+}
 
-        .page {
-            display: none;
-        }
+nav button {
+    background: rgba(10,10,10,0.85);
+    border: 1px solid #444;
+    color: white;
 
-        .page.active {
-            display: block;
-        }
+    padding: 13px 30px;
 
-        h2 {
-            border-left: 4px solid #b00000;
-            padding-left: 12px;
-        }
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
-       table {
+nav button:hover {
+    border-color: #b00000;
+}
+
+nav button.active {
+    background: #850000;
+    border-color: #c00000;
+}
+
+
+/* MAIN */
+
+main {
+    width: min(1200px, 94%);
+    margin: auto;
+    padding-bottom: 80px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* TITLES */
+
+.section-title {
+    border-left: 4px solid #b00000;
+    padding-left: 12px;
+    margin-top: 20px;
+}
+
+
+/* PANEL */
+
+.panel {
+    background: rgba(8,8,8,0.86);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(7px);
+
+    padding: 25px;
+    margin-top: 20px;
+}
+
+
+/* TEAM SETTINGS */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.team-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.team-number {
+    width: 35px;
+    color: #777;
+    font-weight: bold;
+}
+
+input {
+    background: #111;
+    border: 1px solid #444;
+    color: white;
+
+    padding: 10px 12px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #b00000;
+}
+
+.team-input input {
+    width: 100%;
+}
+
+
+/* STANDINGS */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: rgba(10, 10, 10, 0.88);
-    backdrop-filter: blur(6px);
+    margin-top: 10px;
+
+    background: rgba(8,8,8,0.90);
 }
 
-        th,
-        td {
-            padding: 14px;
-            border-bottom: 1px solid #292929;
-            text-align: center;
-        }
+th {
+    background: #171717;
+    color: #aaa;
 
-        th {
-            background: #191919;
-            color: #aaa;
-        }
+    font-size: 12px;
+    letter-spacing: 1px;
 
-        td:nth-child(2) {
-            text-align: left;
-            font-weight: bold;
-        }
+    padding: 13px 10px;
+}
 
-        .playoff {
-            display: flex;
-            gap: 50px;
-            overflow-x: auto;
-            padding: 30px 10px;
-        }
+td {
+    padding: 13px 10px;
+    border-bottom: 1px solid #292929;
+    text-align: center;
+}
 
-        .round {
-            min-width: 220px;
-        }
+td:nth-child(2) {
+    text-align: left;
+    font-weight: bold;
+}
 
-        .round h3 {
-            text-align: center;
-            color: #aaa;
-        }
+tr:hover {
+    background: rgba(120,0,0,0.15);
+}
 
-      .match {
-    background: rgba(10, 10, 10, 0.88);
-    backdrop-filter: blur(6px);
+.place {
+    color: #888;
+    font-weight: bold;
+}
+
+.points {
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+
+/* MATCHES */
+
+.matches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.match {
+    background: rgba(15,15,15,0.92);
     border: 1px solid #333;
-    margin: 30px 0;
+    padding: 15px;
 }
 
-        .team {
-            padding: 12px;
-            border-bottom: 1px solid #333;
-        }
+.match-top {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
 
-        .team:last-child {
-            border-bottom: none;
-        }
+    font-size: 11px;
+    margin-bottom: 10px;
+}
 
-        .score {
-            float: right;
-            color: #aaa;
-        }
+.match-teams {
+    display: grid;
+    grid-template-columns: 1fr 65px 20px 65px 1fr;
+    align-items: center;
+    gap: 7px;
+}
 
-        .final {
-            border-color: #8b0000;
-        }
-    </style>
+.match-team {
+    font-weight: bold;
+}
+
+.match-team.right {
+    text-align: right;
+}
+
+.score-input {
+    width: 65px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.vs {
+    text-align: center;
+    color: #666;
+}
+
+.match-status {
+    margin-top: 9px;
+    font-size: 11px;
+    color: #777;
+}
+
+.match-status.win {
+    color: #aaa;
+}
+
+
+/* BUTTONS */
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    background: #151515;
+    border: 1px solid #444;
+    color: white;
+
+    padding: 11px 20px;
+
+    cursor: pointer;
+}
+
+.action-buttons button:hover {
+    border-color: #b00000;
+}
+
+.reset {
+    border-color: #650000 !important;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .matches {
+        grid-template-columns: 1fr;
+    }
+
+    .match-teams {
+        grid-template-columns: 1fr 55px 15px 55px 1fr;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
+
 <header>
+
     <h1>FORGE BY H8</h1>
+
     <p>COUNTER-STRIKE 2 TOURNAMENT</p>
+
 </header>
 
+
 <nav>
-    <button class="active" onclick="showPage('groups', this)">
+
+    <button
+        id="groupsButton"
+        class="active"
+        onclick="showPage('groups')">
+
         GROUP STAGE
+
     </button>
 
-    <button onclick="showPage('playoff', this)">
+
+    <button
+        id="playoffButton"
+        onclick="showPage('playoff')">
+
         PLAYOFF
+
     </button>
+
 </nav>
+
 
 <main>
 
-    <!-- GROUP STAGE -->
-    <section id="groups" class="page active">
 
-        <h2>GROUP STAGE</h2>
+<!-- ================= GROUP STAGE ================= -->
 
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>TEAM</th>
-                    <th>W</th>
-                    <th>L</th>
-                    <th>PTS</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Team 1</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td>Team 2</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>Team 3</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td>Team 4</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>5</td>
-                    <td>Team 5</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>6</td>
-                    <td>Team 6</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>7</td>
-                    <td>Team 7</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-                <tr>
-                    <td>8</td>
-                    <td>Team 8</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            </tbody>
-        </table>
-
-    </section>
+<section
+    id="groups"
+    class="page active">
 
 
-    <!-- PLAYOFF -->
-    <section id="playoff" class="page">
-
-        <h2>PLAYOFF</h2>
-
-        <div class="playoff">
-
-            <div class="round">
-                <h3>QUARTERFINALS</h3>
-
-                <div class="match">
-                    <div class="team">
-                        Team 1
-                        <span class="score">0</span>
-                    </div>
-
-                    <div class="team">
-                        Team 8
-                        <span class="score">0</span>
-                    </div>
-                </div>
-
-                <div class="match">
-                    <div class="team">
-                        Team 4
-                        <span class="score">0</span>
-                    </div>
-
-                    <div class="team">
-                        Team 5
-                        <span class="score">0</span>
-                    </div>
-                </div>
-
-            </div>
+    <h2 class="section-title">
+        GROUP STAGE
+    </h2>
 
 
-            <div class="round">
-                <h3>SEMIFINALS</h3>
+    <!-- TEAMS -->
 
-                <div class="match">
-                    <div class="team">
-                        TBD
-                    </div>
+    <div class="panel">
 
-                    <div class="team">
-                        TBD
-                    </div>
-                </div>
+        <h3>TEAMS</h3>
 
-                <div class="match">
-                    <div class="team">
-                        TBD
-                    </div>
+        <div
+            id="teamInputs"
+            class="team-grid">
+        </div>
 
-                    <div class="team">
-                        TBD
-                    </div>
-                </div>
-
-            </div>
+    </div>
 
 
-            <div class="round">
-                <h3>FINAL</h3>
+    <!-- STANDINGS -->
 
-                <div class="match final">
-                    <div class="team">
-                        TBD
-                    </div>
+    <div class="panel">
 
-                    <div class="team">
-                        TBD
-                    </div>
-                </div>
+        <h3>STANDINGS</h3>
 
-            </div>
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>TEAM</th>
+                        <th>И</th>
+                        <th>В</th>
+                        <th>П</th>
+                        <th>О</th>
+                        <th>+/-</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="standings">
+
+                </tbody>
+
+            </table>
 
         </div>
 
-    </section>
+    </div>
+
+
+    <!-- MATCHES -->
+
+    <div class="panel">
+
+        <h3>MATCH RESULTS</h3>
+
+        <p style="color:#777;font-size:13px;">
+            Введи счёт каждой карты. Например: 13 : 8
+        </p>
+
+        <div
+            id="matches"
+            class="matches">
+        </div>
+
+
+        <div class="action-buttons">
+
+            <button onclick="saveData()">
+                SAVE
+            </button>
+
+            <button
+                class="reset"
+                onclick="resetTournament()">
+
+                RESET ALL
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= PLAYOFF ================= -->
+
+<section
+    id="playoff"
+    class="page">
+
+    <h2 class="section-title">
+        PLAYOFF
+    </h2>
+
+    <div class="panel">
+
+        <h3>COMING SOON</h3>
+
+        <p style="color:#888;">
+            После завершения группового этапа здесь появится
+            автоматическая сетка плей-офф.
+        </p>
+
+    </div>
+
+</section>
+
 
 </main>
 
 
+
 <script>
 
-function showPage(pageId, button) {
 
-    document.querySelectorAll('.page').forEach(function(page) {
-        page.classList.remove('active');
+/* =========================================
+   DATA
+========================================= */
+
+
+let teams = JSON.parse(
+    localStorage.getItem("forgeTeams")
+) || [
+
+    "Team 1",
+    "Team 2",
+    "Team 3",
+    "Team 4",
+    "Team 5",
+    "Team 6",
+    "Team 7",
+    "Team 8"
+
+];
+
+
+let results = JSON.parse(
+    localStorage.getItem("forgeResults")
+) || {};
+
+
+
+/* =========================================
+   CREATE TEAM INPUTS
+========================================= */
+
+
+function createTeamInputs() {
+
+    const container =
+        document.getElementById("teamInputs");
+
+    container.innerHTML = "";
+
+
+    teams.forEach((team, index) => {
+
+        const row =
+            document.createElement("div");
+
+        row.className = "team-input";
+
+
+        row.innerHTML = `
+
+            <span class="team-number">
+                ${index + 1}
+            </span>
+
+            <input
+                type="text"
+                value="${team}"
+                placeholder="Team ${index + 1}"
+                onchange="changeTeam(${index}, this.value)"
+            >
+
+        `;
+
+
+        container.appendChild(row);
+
     });
 
-    document.getElementById(pageId).classList.add('active');
-
-    document.querySelectorAll('nav button').forEach(function(btn) {
-        btn.classList.remove('active');
-    });
-
-    button.classList.add('active');
 }
+
+
+
+/* =========================================
+   CHANGE TEAM NAME
+========================================= */
+
+
+function changeTeam(index, value) {
+
+    value = value.trim();
+
+
+    if (value === "") {
+
+        value = `Team ${index + 1}`;
+
+    }
+
+
+    teams[index] = value;
+
+
+    localStorage.setItem(
+        "forgeTeams",
+        JSON.stringify(teams)
+    );
+
+
+    render();
+
+}
+
+
+
+/* =========================================
+   CREATE ALL MATCHES
+========================================= */
+
+
+function createMatches() {
+
+    const container =
+        document.getElementById("matches");
+
+    container.innerHTML = "";
+
+
+    let matchNumber = 1;
+
+
+    for (let i = 0; i < teams.length; i++) {
+
+        for (
+            let j = i + 1;
+            j < teams.length;
+            j++
+        ) {
+
+
+            const key =
+                `${i}-${j}`;
+
+
+            const result =
+                results[key] || {
+                    a: "",
+                    b: ""
+                };
+
+
+            const match =
+                document.createElement("div");
+
+            match.className = "match";
+
+
+            match.innerHTML = `
+
+                <div class="match-top">
+
+                    <span>
+                        MATCH ${matchNumber}
+                    </span>
+
+                    <span>
+                        BO1
+                    </span>
+
+                </div>
+
+
+                <div class="match-teams">
+
+
+                    <div class="match-team">
+
+                        ${teams[i]}
+
+                    </div>
+
+
+                    <input
+                        class="score-input"
+                        type="number"
+                        min="0"
+                        max="99"
+                        value="${result.a}"
+                        onchange="changeScore('${key}', 'a', this.value)"
+                    >
+
+
+                    <div class="vs">
+                        :
+                    </div>
+
+
+                    <input
+                        class="score-input"
+                        type="number"
+                        min="0"
+                        max="99"
+                        value="${result.b}"
+                        onchange="changeScore('${key}', 'b', this.value)"
+                    >
+
+
+                    <div class="match-team right">
+
+                        ${teams[j]}
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="match-status"
+                    id="status-${key}">
+
+                </div>
+
+            `;
+
+
+            container.appendChild(match);
+
+
+            updateMatchStatus(
+                key,
+                i,
+                j
+            );
+
+
+            matchNumber++;
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================================
+   CHANGE SCORE
+========================================= */
+
+
+function changeScore(
+    key,
+    side,
+    value
+) {
+
+
+    if (!results[key]) {
+
+        results[key] = {
+            a: "",
+            b: ""
+        };
+
+    }
+
+
+    results[key][side] =
+        value;
+
+
+    localStorage.setItem(
+        "forgeResults",
+        JSON.stringify(results)
+    );
+
+
+    renderStandings();
+
+    updateAllStatuses();
+
+}
+
+
+
+/* =========================================
+   MATCH STATUS
+========================================= */
+
+
+function updateMatchStatus(
+    key,
+    i,
+    j
+) {
+
+
+    const element =
+        document.getElementById(
+            `status-${key}`
+        );
+
+
+    if (!element) return;
+
+
+    const result =
+        results[key];
+
+
+    if (
+        !result ||
+        result.a === "" ||
+        result.b === ""
+    ) {
+
+        element.textContent =
+            "NO RESULT";
+
+        element.className =
+            "match-status";
+
+        return;
+
+    }
+
+
+    const a =
+        Number(result.a);
+
+    const b =
+        Number(result.b);
+
+
+    if (
+        isNaN(a) ||
+        isNaN(b) ||
+        a === b ||
+        a < 0 ||
+        b < 0
+    ) {
+
+        element.textContent =
+            "INVALID SCORE";
+
+        element.className =
+            "match-status";
+
+        return;
+
+    }
+
+
+    const winner =
+        a > b
+            ? teams[i]
+            : teams[j];
+
+
+    element.textContent =
+        `WINNER: ${winner}`;
+
+    element.className =
+        "match-status win";
+
+}
+
+
+
+/* =========================================
+   UPDATE ALL STATUSES
+========================================= */
+
+
+function updateAllStatuses() {
+
+    let matchNumber = 1;
+
+
+    for (let i = 0; i < teams.length; i++) {
+
+        for (
+            let j = i + 1;
+            j < teams.length;
+            j++
+        ) {
+
+            updateMatchStatus(
+                `${i}-${j}`,
+                i,
+                j
+            );
+
+            matchNumber++;
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================================
+   CALCULATE STANDINGS
+========================================= */
+
+
+function calculateStandings() {
+
+
+    const stats =
+        teams.map((team, index) => ({
+
+            index: index,
+            team: team,
+
+            played: 0,
+            wins: 0,
+            losses: 0,
+
+            points: 0,
+
+            roundDiff: 0
+
+        }));
+
+
+
+    Object.keys(results).forEach(key => {
+
+
+        const [aIndex, bIndex] =
+            key.split("-").map(Number);
+
+
+        const result =
+            results[key];
+
+
+        if (
+            !result ||
+            result.a === "" ||
+            result.b === ""
+        ) {
+
+            return;
+
+        }
+
+
+        const a =
+            Number(result.a);
+
+        const b =
+            Number(result.b);
+
+
+        if (
+            isNaN(a) ||
+            isNaN(b) ||
+            a === b ||
+            a < 0 ||
+            b < 0
+        ) {
+
+            return;
+
+        }
+
+
+        stats[aIndex].played++;
+        stats[bIndex].played++;
+
+
+        stats[aIndex].roundDiff +=
+            a - b;
+
+        stats[bIndex].roundDiff +=
+            b - a;
+
+
+        if (a > b) {
+
+            stats[aIndex].wins++;
+            stats[aIndex].points++;
+
+            stats[bIndex].losses++;
+
+        }
+
+
+        if (b > a) {
+
+            stats[bIndex].wins++;
+            stats[bIndex].points++;
+
+            stats[aIndex].losses++;
+
+        }
+
+    });
+
+
+    stats.sort((a, b) => {
+
+        if (b.points !== a.points)
+            return b.points - a.points;
+
+        if (b.roundDiff !== a.roundDiff)
+            return b.roundDiff - a.roundDiff;
+
+        return b.wins - a.wins;
+
+    });
+
+
+    return stats;
+
+}
+
+
+
+/* =========================================
+   RENDER STANDINGS
+========================================= */
+
+
+function renderStandings() {
+
+
+    const tbody =
+        document.getElementById(
+            "standings"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    const stats =
+        calculateStandings();
+
+
+    stats.forEach(
+        (team, index) => {
+
+
+            const row =
+                document.createElement("tr");
+
+
+            const diff =
+                team.roundDiff > 0
+                    ? `+${team.roundDiff}`
+                    : team.roundDiff;
+
+
+            row.innerHTML = `
+
+                <td class="place">
+                    ${index + 1}
+                </td>
+
+                <td>
+                    ${team.team}
+                </td>
+
+                <td>
+                    ${team.played}
+                </td>
+
+                <td>
+                    ${team.wins}
+                </td>
+
+                <td>
+                    ${team.losses}
+                </td>
+
+                <td class="points">
+                    ${team.points}
+                </td>
+
+                <td>
+                    ${diff}
+                </td>
+
+            `;
+
+
+            tbody.appendChild(row);
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   RENDER EVERYTHING
+========================================= */
+
+
+function render() {
+
+    createTeamInputs();
+
+    createMatches();
+
+    renderStandings();
+
+}
+
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+
+function saveData() {
+
+
+    localStorage.setItem(
+        "forgeTeams",
+        JSON.stringify(teams)
+    );
+
+
+    localStorage.setItem(
+        "forgeResults",
+        JSON.stringify(results)
+    );
+
+
+    alert(
+        "Tournament data saved!"
+    );
+
+}
+
+
+
+/* =========================================
+   RESET
+========================================= */
+
+
+function resetTournament() {
+
+
+    const confirmation =
+        confirm(
+            "Reset all teams and match results?"
+        );
+
+
+    if (!confirmation) return;
+
+
+    teams = [
+
+        "Team 1",
+        "Team 2",
+        "Team 3",
+        "Team 4",
+        "Team 5",
+        "Team 6",
+        "Team 7",
+        "Team 8"
+
+    ];
+
+
+    results = {};
+
+
+    localStorage.removeItem(
+        "forgeTeams"
+    );
+
+
+    localStorage.removeItem(
+        "forgeResults"
+    );
+
+
+    render();
+
+}
+
+
+
+/* =========================================
+   PAGE SWITCH
+========================================= */
+
+
+function showPage(page) {
+
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            element =>
+                element.classList.remove(
+                    "active"
+                )
+        );
+
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll("nav button")
+        .forEach(
+            button =>
+                button.classList.remove(
+                    "active"
+                )
+        );
+
+
+    if (page === "groups") {
+
+        document
+            .getElementById("groupsButton")
+            .classList.add("active");
+
+    }
+
+
+    if (page === "playoff") {
+
+        document
+            .getElementById("playoffButton")
+            .classList.add("active");
+
+    }
+
+}
+
+
+
+/* =========================================
+   START
+========================================= */
+
+
+render();
+
 
 </script>
 
