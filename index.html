@@ -465,6 +465,8 @@ tr:hover {
 
 <!-- ================= PLAYOFF ================= -->
 
+<!-- ================= PLAYOFF ================= -->
+
 <section
     id="playoff"
     class="page">
@@ -475,12 +477,16 @@ tr:hover {
 
     <div class="panel">
 
-        <h3>COMING SOON</h3>
+        <h3>UPPER BRACKET</h3>
 
-        <p style="color:#888;">
-            После завершения группового этапа здесь появится
-            автоматическая сетка плей-офф.
+        <p style="color:#777;font-size:13px;">
+            Посев автоматически определяется по итогам группового этапа.
         </p>
+
+        <div
+            id="playoffBracket"
+            class="playoff">
+        </div>
 
     </div>
 
@@ -1240,6 +1246,217 @@ function showPage(page) {
 
 render();
 
+    /* =========================================
+   PLAYOFF
+========================================= */
+
+
+function getPlayoffTeams() {
+
+    const standings =
+        calculateStandings();
+
+    return standings.map(
+        team => team.team
+    );
+
+}
+
+
+function createPlayoff() {
+
+    const container =
+        document.getElementById(
+            "playoffBracket"
+        );
+
+    if (!container) return;
+
+
+    const playoffTeams =
+        getPlayoffTeams();
+
+
+    if (playoffTeams.length < 8) {
+
+        container.innerHTML = `
+            <div style="color:#888;">
+                Недостаточно команд для создания сетки.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="round">
+
+            <h3>QUARTERFINALS</h3>
+
+
+            <div class="match">
+
+                <div class="team">
+                    ${playoffTeams[0]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+                <div class="team">
+                    ${playoffTeams[7]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="team">
+                    ${playoffTeams[3]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+                <div class="team">
+                    ${playoffTeams[4]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="team">
+                    ${playoffTeams[2]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+                <div class="team">
+                    ${playoffTeams[5]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="team">
+                    ${playoffTeams[1]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+                <div class="team">
+                    ${playoffTeams[6]}
+
+                    <span class="score">
+                        0
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="round">
+
+            <h3>SEMIFINALS</h3>
+
+
+            <div class="match">
+
+                <div class="team">
+                    TBD
+                </div>
+
+                <div class="team">
+                    TBD
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="team">
+                    TBD
+                </div>
+
+                <div class="team">
+                    TBD
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="round">
+
+            <h3>FINAL</h3>
+
+
+            <div class="match final">
+
+                <div class="team">
+                    TBD
+                </div>
+
+                <div class="team">
+                    TBD
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* обновляем Playoff вместе с таблицей */
+
+const originalRender =
+    render;
+
+
+render = function() {
+
+    originalRender();
+
+    createPlayoff();
+
+};
+
+
+createPlayoff();
 
 </script>
 
